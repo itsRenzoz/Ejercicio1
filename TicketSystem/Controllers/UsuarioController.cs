@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TicketSystem.DTOs; 
+using TicketSystem.DTOs;
 
 namespace TicketSystem.Controllers
 {
@@ -13,13 +13,18 @@ namespace TicketSystem.Controllers
         [HttpGet]
         public IActionResult CrearUsuario()
         {
-            return View(); 
+            return View();
         }
 
         [HttpPost]
         public IActionResult CrearUsuario(Usuario usuario)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            return View(usuario);
         }
     }
 }
